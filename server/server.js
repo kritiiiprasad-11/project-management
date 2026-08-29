@@ -17,4 +17,10 @@ app.use("/api/inngest", serve({ client: inngest, functions }));
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`))
+// Only listen locally - Vercel handles the server itself in production
+
+if (!process.env.VERCEL) {
+    app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`))
+}
+
+export default app;
